@@ -1,0 +1,188 @@
+   0  $accept : simplePathWriter $end
+
+   1  simplePathWriter : commandList END_OF_FILE
+   2                   |
+
+   3  commandList : commandList command
+   4              | command
+
+   5  length : INTEGER
+
+   6  command : PEN_UP
+   7          | PEN_DOWN
+   8          | MOVE length COMMA length
+   9          | UP length
+  10          | DOWN length
+  11          | LEFT length
+  12          | RIGHT length
+
+state 0
+	$accept : . simplePathWriter $end  (0)
+	simplePathWriter : .  (2)
+
+	PEN_UP  shift 1
+	PEN_DOWN  shift 2
+	UP  shift 3
+	DOWN  shift 4
+	LEFT  shift 5
+	RIGHT  shift 6
+	MOVE  shift 7
+	$end  reduce 2
+
+	simplePathWriter  goto 8
+	commandList  goto 9
+	command  goto 10
+
+
+state 1
+	command : PEN_UP .  (6)
+
+	.  reduce 6
+
+
+state 2
+	command : PEN_DOWN .  (7)
+
+	.  reduce 7
+
+
+state 3
+	command : UP . length  (9)
+
+	INTEGER  shift 11
+	.  error
+
+	length  goto 12
+
+
+state 4
+	command : DOWN . length  (10)
+
+	INTEGER  shift 11
+	.  error
+
+	length  goto 13
+
+
+state 5
+	command : LEFT . length  (11)
+
+	INTEGER  shift 11
+	.  error
+
+	length  goto 14
+
+
+state 6
+	command : RIGHT . length  (12)
+
+	INTEGER  shift 11
+	.  error
+
+	length  goto 15
+
+
+state 7
+	command : MOVE . length COMMA length  (8)
+
+	INTEGER  shift 11
+	.  error
+
+	length  goto 16
+
+
+state 8
+	$accept : simplePathWriter . $end  (0)
+
+	$end  accept
+
+
+state 9
+	simplePathWriter : commandList . END_OF_FILE  (1)
+	commandList : commandList . command  (3)
+
+	END_OF_FILE  shift 17
+	PEN_UP  shift 1
+	PEN_DOWN  shift 2
+	UP  shift 3
+	DOWN  shift 4
+	LEFT  shift 5
+	RIGHT  shift 6
+	MOVE  shift 7
+	.  error
+
+	command  goto 18
+
+
+state 10
+	commandList : command .  (4)
+
+	.  reduce 4
+
+
+state 11
+	length : INTEGER .  (5)
+
+	.  reduce 5
+
+
+state 12
+	command : UP length .  (9)
+
+	.  reduce 9
+
+
+state 13
+	command : DOWN length .  (10)
+
+	.  reduce 10
+
+
+state 14
+	command : LEFT length .  (11)
+
+	.  reduce 11
+
+
+state 15
+	command : RIGHT length .  (12)
+
+	.  reduce 12
+
+
+state 16
+	command : MOVE length . COMMA length  (8)
+
+	COMMA  shift 19
+	.  error
+
+
+state 17
+	simplePathWriter : commandList END_OF_FILE .  (1)
+
+	.  reduce 1
+
+
+state 18
+	commandList : commandList command .  (3)
+
+	.  reduce 3
+
+
+state 19
+	command : MOVE length COMMA . length  (8)
+
+	INTEGER  shift 11
+	.  error
+
+	length  goto 20
+
+
+state 20
+	command : MOVE length COMMA length .  (8)
+
+	.  reduce 8
+
+
+14 terminals, 5 nonterminals
+13 grammar rules, 21 states
