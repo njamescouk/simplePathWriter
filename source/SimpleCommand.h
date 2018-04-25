@@ -29,6 +29,20 @@ public:
     long xComponent();
     long yComponent();
 
+    bool isAbsolute()
+    {
+        switch(m_command)
+        {
+            case SPW_COMMAND_ABS_MOVE:
+            case SPW_COMMAND_ABS_UP:
+            case SPW_COMMAND_ABS_DOWN:
+            case SPW_COMMAND_ABS_LEFT:
+            case SPW_COMMAND_ABS_RIGHT:
+                return true;
+        }
+
+        return false;
+    }
 };
 
 

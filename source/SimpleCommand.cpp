@@ -115,6 +115,77 @@ void SimpleCommand::writePath(FILE *fp)
             }
             break;
         }
+        case SPW_COMMAND_ABS_MOVE: // right,up
+        {
+            SimpleLength xLen = m_arguments[0].getLength();
+            SimpleLength yLen = m_arguments[1].getLength();
+            // yLen = -1 * yLen; as svg up is -ve y
+
+            if (m_penIsDown)
+            {
+                fprintf(fp, "L%ld %ld ", xLen.getLength(), -1*yLen.getLength());
+            }
+            else
+            {
+                fprintf(fp, "M%ld %ld ", xLen.getLength(), -1*yLen.getLength());
+            }
+
+            break;
+        }
+        case SPW_COMMAND_ABS_UP:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            // l = -1 * l; as svg up is -ve y
+
+            if (m_penIsDown)
+            {
+                fprintf(fp, "V%ld ", -1*l.getLength());
+            }
+            else
+            {
+                fprintf(fp, "M0 %ld ", -1*l.getLength());
+            }
+            break;
+        }
+        case SPW_COMMAND_ABS_DOWN:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            if (m_penIsDown)
+            {
+                fprintf(fp, "V%ld ", l.getLength());
+            }
+            else
+            {
+                fprintf(fp, "M0 %ld ", l.getLength());
+            }
+            break;
+        }
+        case SPW_COMMAND_ABS_LEFT:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            if (m_penIsDown)
+            {
+                fprintf(fp, "H%ld ", -1*l.getLength());
+            }
+            else
+            {
+                fprintf(fp, "M%ld 0 ", -1*l.getLength());
+            }
+            break;
+        }
+        case SPW_COMMAND_ABS_RIGHT:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            if (m_penIsDown)
+            {
+                fprintf(fp, "H%ld ", l.getLength());
+            }
+            else
+            {
+                fprintf(fp, "M%ld 0 ", l.getLength());
+            }
+            break;
+        }
     }    
 }
 
@@ -137,6 +208,24 @@ long SimpleCommand::xComponent()
             break;
         }
         case SPW_COMMAND_RIGHT:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            res = l.getLength();
+            break;
+        }
+        case SPW_COMMAND_ABS_MOVE:
+        {
+            SimpleLength xLen = m_arguments[0].getLength();
+            res = xLen.getLength();
+            break;
+        }
+        case SPW_COMMAND_ABS_LEFT:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            res = -1*l.getLength();
+            break;
+        }
+        case SPW_COMMAND_ABS_RIGHT:
         {
             SimpleLength l = m_arguments[0].getLength();
             res = l.getLength();
@@ -166,6 +255,24 @@ long SimpleCommand::yComponent()
             break;
         }
         case SPW_COMMAND_DOWN:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            res = l.getLength();
+            break;
+        }
+        case SPW_COMMAND_ABS_MOVE:
+        {
+            SimpleLength yLen = m_arguments[1].getLength();
+            res = -1*yLen.getLength(); // our up is svg -ve y
+            break;
+        }
+        case SPW_COMMAND_ABS_UP:
+        {
+            SimpleLength l = m_arguments[0].getLength();
+            res = -1*l.getLength();
+            break;
+        }
+        case SPW_COMMAND_ABS_DOWN:
         {
             SimpleLength l = m_arguments[0].getLength();
             res = l.getLength();

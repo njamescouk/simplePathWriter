@@ -37,7 +37,7 @@ int main (int argc, char *argv[])
 
     if (cmdline.hasOption("v"))
     {
-        printf ("%s version 1.0\n", argv[0]);
+        printf ("%s version %s\n", argv[0], szVersion); // oops. print correct version...
         return 0;
     }
 
@@ -61,13 +61,14 @@ int main (int argc, char *argv[])
 
     int res = 0;
     FILE *ifp = stdin;
-
+    std::string inputFile = "stdin";
     if (cmdline.numArguments() >= 1)
     {
-        ifp = fopen(cmdline.getArgument(0).c_str(), "rt");
+        inputFile = cmdline.getArgument(0);
+        ifp = fopen(inputFile.c_str(), "rt");
         if (ifp == 0)
         {
-            perror(cmdline.getArgument(0).c_str());
+            perror(inputFile.c_str());
             return 1;
         }
     }
@@ -88,7 +89,7 @@ int main (int argc, char *argv[])
         }
 
         if (writeSvg)
-            gResult.writeSvg(ofp, adjustPos);
+            gResult.writeSvg(ofp, adjustPos, inputFile.c_str());
         else if (writeCompletePath)
             gResult.writeCompletePath(ofp);
         else

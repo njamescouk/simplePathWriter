@@ -287,22 +287,23 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 14
-#define YY_END_OF_BUFFER 15
-static yyconst short int yy_acclist[42] =
+#define YY_NUM_RULES 19
+#define YY_END_OF_BUFFER 20
+static yyconst short int yy_acclist[57] =
     {   0,
-       15,   13,   14,   12,   13,   14,   11,   14,    8,   13,
-       14,   10,   13,   14,   13,   14,    9,   13,   14,    5,
-       13,   14,    6,   13,   14,    3,   13,   14,   13,   14,
-        7,   13,   14,    4,   13,   14,   12,    8,    9,    2,
-        1
+       20,   18,   19,   17,   18,   19,   16,   19,   13,   18,
+       19,   15,   18,   19,   18,   19,   14,   18,   19,   10,
+       18,   19,   11,   18,   19,    8,   18,   19,   12,   18,
+       19,    9,   18,   19,    5,   18,   19,    6,   18,   19,
+        3,   18,   19,   18,   19,    7,   18,   19,    4,   18,
+       19,   17,   13,   14,    2,    1
     } ;
 
-static yyconst short int yy_accept[24] =
+static yyconst short int yy_accept[29] =
     {   0,
         1,    1,    1,    2,    4,    7,    9,   12,   15,   17,
-       20,   23,   26,   29,   31,   34,   37,   38,   39,   40,
-       41,   42,   42
+       20,   23,   26,   29,   32,   35,   38,   41,   44,   46,
+       49,   52,   53,   54,   55,   56,   57,   57
     } ;
 
 static yyconst int yy_ec[256] =
@@ -313,13 +314,13 @@ static yyconst int yy_ec[256] =
         1,    2,    1,    1,    4,    1,    1,    1,    1,    1,
         1,    1,    1,    5,    6,    1,    1,    7,    7,    7,
         7,    7,    7,    7,    7,    7,    7,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    8,
+        1,    1,    1,    1,    1,    1,    1,    8,    1,    1,
+        1,    1,    1,    1,    1,    9,   10,    1,    1,    1,
+        1,   11,    1,    1,   12,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,   13,
 
-        1,    1,    1,    1,    1,    1,    1,    9,   10,    1,
-        1,   11,    1,   12,    1,    1,   13,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,   14,   15,    1,
+        1,   16,    1,   17,    1,    1,   18,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -337,40 +338,42 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[14] =
+static yyconst int yy_meta[19] =
     {   0,
         1,    1,    2,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1
+        1,    1,    1,    1,    1,    1,    1,    1
     } ;
 
-static yyconst short int yy_base[24] =
+static yyconst short int yy_base[29] =
     {   0,
-        0,    0,   22,   23,   19,   23,    0,   23,   13,   11,
-       23,   23,   23,    6,   23,   23,   15,    0,    9,   23,
-       23,   23,   14
+        0,    0,   27,   28,   24,   28,    0,   28,   18,   16,
+       28,   28,   28,   28,   28,   28,   28,   28,    6,   28,
+       28,   20,    0,   14,   28,   28,   28,   19
     } ;
 
-static yyconst short int yy_def[24] =
+static yyconst short int yy_def[29] =
     {   0,
-       22,    1,   22,   22,   22,   22,   23,   22,   22,   22,
-       22,   22,   22,   22,   22,   22,   22,   23,   22,   22,
-       22,    0,   22
+       27,    1,   27,   27,   27,   27,   28,   27,   27,   27,
+       27,   27,   27,   27,   27,   27,   27,   27,   27,   27,
+       27,   27,   28,   27,   27,   27,    0,   27
     } ;
 
-static yyconst short int yy_nxt[37] =
+static yyconst short int yy_nxt[47] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
-       14,   15,   16,   20,   18,   19,   17,   19,   21,   19,
-       17,   22,    3,   22,   22,   22,   22,   22,   22,   22,
-       22,   22,   22,   22,   22,   22
+       14,   15,   16,   17,   18,   19,   20,   21,   25,   23,
+       24,   22,   24,   26,   24,   22,   27,    3,   27,   27,
+       27,   27,   27,   27,   27,   27,   27,   27,   27,   27,
+       27,   27,   27,   27,   27,   27
     } ;
 
-static yyconst short int yy_chk[37] =
+static yyconst short int yy_chk[47] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,   14,   23,   19,   17,   10,   14,    9,
-        5,    3,   22,   22,   22,   22,   22,   22,   22,   22,
-       22,   22,   22,   22,   22,   22
+        1,    1,    1,    1,    1,    1,    1,    1,   19,   28,
+       24,   22,   10,   19,    9,    5,    3,   27,   27,   27,
+       27,   27,   27,   27,   27,   27,   27,   27,   27,   27,
+       27,   27,   27,   27,   27,   27
     } ;
 
 static yy_state_type yy_state_buf[YY_BUF_SIZE + 2], *yy_state_ptr;
@@ -416,7 +419,7 @@ char *getState();
 int seenEOF = 0;
 
 /* regular definitions */
-#line 420 "lex.yy.c"
+#line 423 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -569,7 +572,7 @@ YY_DECL
 
 #line 38 "simplePathWriter.l"
 
-#line 573 "lex.yy.c"
+#line 576 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -617,14 +620,14 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 23 )
+				if ( yy_current_state >= 28 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			*yy_state_ptr++ = yy_current_state;
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 23 );
+		while ( yy_base[yy_current_state] != 28 );
 
 yy_find_action:
 		yy_current_state = *--yy_state_ptr;
@@ -735,14 +738,64 @@ YY_RULE_SETUP
 #line 88 "simplePathWriter.l"
 {
                     #ifdef LEX_MSG
-                    fprintf (stderr, "COMMENT\n");
+                    fprintf (stderr, "ABS_MOVE\n");
                     #endif
-                    // return COMMENT;
+                    return ABS_MOVE;
                 }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 95 "simplePathWriter.l"
+{
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_UP\n");
+                    #endif
+                    return ABS_UP;
+                }
+	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 102 "simplePathWriter.l"
+{
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_DOWN\n");
+                    #endif
+                    return ABS_DOWN;
+                }
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 109 "simplePathWriter.l"
+{
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_LEFT\n");
+                    #endif
+                    return ABS_LEFT;
+                }
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 116 "simplePathWriter.l"
+{
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_RIGHT\n");
+                    #endif
+                    return ABS_RIGHT;
+                }
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 123 "simplePathWriter.l"
+{
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "COMMENT\n");
+                    #endif
+                    // return COMMENT;
+                }
+	YY_BREAK
+case 14:
+YY_RULE_SETUP
+#line 130 "simplePathWriter.l"
 {
                     #ifdef LEX_MSG
                     fprintf (stderr, "INTEGER %s\n", yytext);
@@ -752,9 +805,9 @@ YY_RULE_SETUP
                     return INTEGER;
                 }
 	YY_BREAK
-case 10:
+case 15:
 YY_RULE_SETUP
-#line 104 "simplePathWriter.l"
+#line 139 "simplePathWriter.l"
 {
                     #ifdef LEX_MSG
                     fprintf (stderr, "COMMA\n");
@@ -762,26 +815,26 @@ YY_RULE_SETUP
                     return COMMA;
                 }
 	YY_BREAK
-case 11:
+case 16:
 YY_RULE_SETUP
-#line 111 "simplePathWriter.l"
+#line 146 "simplePathWriter.l"
 {
                 }
 	YY_BREAK
-case 12:
+case 17:
 YY_RULE_SETUP
-#line 114 "simplePathWriter.l"
+#line 149 "simplePathWriter.l"
 {}
 	YY_BREAK
-case 13:
+case 18:
 YY_RULE_SETUP
-#line 116 "simplePathWriter.l"
+#line 151 "simplePathWriter.l"
 {
                     return LEXERR;
                 }
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
-#line 120 "simplePathWriter.l"
+#line 155 "simplePathWriter.l"
 {
                     /* we fake this to get round the no newline 
                     at end of file problem */
@@ -796,12 +849,12 @@ case YY_STATE_EOF(INITIAL):
                     }
                 }
 	YY_BREAK
-case 14:
+case 19:
 YY_RULE_SETUP
-#line 135 "simplePathWriter.l"
+#line 170 "simplePathWriter.l"
 ECHO;
 	YY_BREAK
-#line 805 "lex.yy.c"
+#line 858 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1088,7 +1141,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 23 )
+			if ( yy_current_state >= 28 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1118,11 +1171,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 23 )
+		if ( yy_current_state >= 28 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 22);
+	yy_is_jam = (yy_current_state == 27);
 	if ( ! yy_is_jam )
 		*yy_state_ptr++ = yy_current_state;
 
@@ -1683,7 +1736,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 135 "simplePathWriter.l"
+#line 170 "simplePathWriter.l"
 
 /* user code */
 

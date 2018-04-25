@@ -10,6 +10,11 @@
 #define LEFT 266
 #define RIGHT 267
 #define MOVE 268
+#define ABS_UP 269
+#define ABS_DOWN 270
+#define ABS_LEFT 271
+#define ABS_RIGHT 272
+#define ABS_MOVE 273
 typedef union 
 {
     SimplePathWriter *SimplePathWriterPtr;

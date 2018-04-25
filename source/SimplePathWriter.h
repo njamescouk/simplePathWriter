@@ -22,7 +22,7 @@ public:
     static void startPath(FILE *fp, bool standAlone);
     static void startDashedPath(FILE *fp, bool standAlone);
     static void endPath(FILE *fp);
-    void writeSvg(FILE *fp, bool adjustPos);
+    void writeSvg(FILE *fp, bool adjustPos, const char *iFile);
     void writePathData(FILE *fp);
     void writeCompletePath(FILE *fp);
 };

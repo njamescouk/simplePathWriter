@@ -37,6 +37,11 @@ extern char *szVersion;
 %token LEFT
 %token RIGHT
 %token MOVE
+%token ABS_UP
+%token ABS_DOWN
+%token ABS_LEFT
+%token ABS_RIGHT
+%token ABS_MOVE
 
 %union 
 {
@@ -151,6 +156,40 @@ command
     {
         /* RIGHT length */
         $$ = new SimpleCommand(SPW_COMMAND_RIGHT, *$2);
+        delete $2;
+    }
+    | ABS_MOVE length COMMA length
+    {
+        /* ABS_MOVE length length */
+        std::vector<SimpleLength> vv;
+        vv.push_back(*$2);
+        vv.push_back(*$4);
+        $$ = new SimpleCommand(SPW_COMMAND_ABS_MOVE, vv);
+        delete $2;
+        delete $4;
+    }
+    | ABS_UP length
+    {
+        /* ABS_UP length */
+        $$ = new SimpleCommand(SPW_COMMAND_ABS_UP, *$2);
+        delete $2;
+    }
+    | ABS_DOWN length
+    {
+        /* ABS_DOWN length */
+        $$ = new SimpleCommand(SPW_COMMAND_ABS_DOWN, *$2);
+        delete $2;
+    }
+    | ABS_LEFT length
+    {
+        /* ABS_LEFT length */
+        $$ = new SimpleCommand(SPW_COMMAND_ABS_LEFT, *$2);
+        delete $2;
+    }
+    | ABS_RIGHT length
+    {
+        /* ABS_RIGHT length */
+        $$ = new SimpleCommand(SPW_COMMAND_ABS_RIGHT, *$2);
         delete $2;
     }
     ;

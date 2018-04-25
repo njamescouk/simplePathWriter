@@ -45,7 +45,7 @@ public:
     Cmdline parse()
     {
         Cmdline res;
-        // pcldebug = 1;
+        pcldebug = 1;
         // -bbbb -x -c 8uggg 222 iuoiuoiu-66
         pclScanString(m_scanString.c_str());
         cmdlineLexingSpecs = m_spec.getSpecs();

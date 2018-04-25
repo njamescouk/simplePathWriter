@@ -1,4 +1,5 @@
 #include "SimplePathWriter.h" 
+#include "simpleGlobals.h" 
 
 SimplePathWriter::SimplePathWriter() 
 {
@@ -67,7 +68,7 @@ void SimplePathWriter::writeCompletePath(FILE *fp)
     endPath(fp);
 }
 
-void SimplePathWriter::writeSvg(FILE *fp, bool adjustPos)
+void SimplePathWriter::writeSvg(FILE *fp, bool adjustPos, const char *iFile)
 {
     // insert pen up, move to origin
     // for sanity when writing complete svg
@@ -77,11 +78,14 @@ void SimplePathWriter::writeSvg(FILE *fp, bool adjustPos)
 
     m_commands.insert(m_commands.begin(), c2);
     m_commands.insert(m_commands.begin(), c1);
-    SimpleLength width = m_commands.xExtent() ;
-    SimpleLength height = m_commands.yExtent();
 
-    long pathXpos = m_commands.minXExtent();
-    long pathYpos = m_commands.minYExtent();
+    CommandListExtents cle = m_commands.computeDimensions();
+
+    SimpleLength width = cle.xExtent() ;
+    SimpleLength height = cle.yExtent();
+
+    long pathXpos = cle.getMinX();
+    long pathYpos = cle.minYExtent();
 
     bool pathOutOfBounds = !(pathXpos == 0 && pathYpos == 0);
 
@@ -103,6 +107,7 @@ void SimplePathWriter::writeSvg(FILE *fp, bool adjustPos)
     }
 
     startSvg(fp, width, height);
+    fprintf(fp, "<!--\n    created by %s version %s\n    from %s\n-->\n", progname, szVersion, iFile);
     writeCompletePath(fp);
     endSvg(fp);
 }

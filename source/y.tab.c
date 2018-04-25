@@ -55,49 +55,62 @@ typedef union
 #define LEFT 266
 #define RIGHT 267
 #define MOVE 268
+#define ABS_UP 269
+#define ABS_DOWN 270
+#define ABS_LEFT 271
+#define ABS_RIGHT 272
+#define ABS_MOVE 273
 #define YYERRCODE 256
 short yylhs[] = {                                        -1,
     0,    0,    1,    1,    3,    2,    2,    2,    2,    2,
-    2,    2,
+    2,    2,    2,    2,    2,    2,    2,
 };
 short yylen[] = {                                         2,
     2,    0,    2,    1,    1,    1,    1,    4,    2,    2,
-    2,    2,
+    2,    2,    4,    2,    2,    2,    2,
 };
 short yydefred[] = {                                      0,
-    6,    7,    0,    0,    0,    0,    0,    0,    0,    4,
-    5,    9,   10,   11,   12,    0,    1,    3,    0,    8,
+    6,    7,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    4,    5,    9,   10,   11,   12,
+    0,   14,   15,   16,   17,    0,    1,    3,    0,    0,
+    8,   13,
 };
-short yydgoto[] = {                                       8,
-    9,   10,   12,
+short yydgoto[] = {                                      13,
+   14,   15,   17,
 };
-short yysindex[] = {                                   -245,
-    0,    0, -252, -252, -252, -252, -252,    0, -255,    0,
-    0,    0,    0,    0,    0, -246,    0,    0, -252,    0,
+short yysindex[] = {                                   -234,
+    0,    0, -247, -247, -247, -247, -247, -247, -247, -247,
+ -247, -247,    0, -250,    0,    0,    0,    0,    0,    0,
+ -236,    0,    0,    0,    0, -231,    0,    0, -247, -247,
+    0,    0,
 };
-short yyrindex[] = {                                      8,
+short yyrindex[] = {                                     13,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
+    0,    0,
 };
 short yygindex[] = {                                      0,
-    0,    9,   -4,
+    0,   26,   -4,
 };
-#define YYTABLESIZE 23
-short yytable[] = {                                      13,
-   14,   15,   16,   17,   11,    1,    2,    2,    3,    4,
-    5,    6,    7,   19,   20,    1,    2,   18,    3,    4,
-    5,    6,    7,
+#define YYTABLESIZE 40
+short yytable[] = {                                      18,
+   19,   20,   21,   22,   23,   24,   25,   26,   27,   16,
+    1,    2,    2,    3,    4,    5,    6,    7,    8,    9,
+   10,   11,   12,   29,   31,   32,    1,    2,   30,    3,
+    4,    5,    6,    7,    8,    9,   10,   11,   12,   28,
 };
 short yycheck[] = {                                       4,
-    5,    6,    7,  259,  257,  261,  262,    0,  264,  265,
-  266,  267,  268,  260,   19,  261,  262,    9,  264,  265,
-  266,  267,  268,
+    5,    6,    7,    8,    9,   10,   11,   12,  259,  257,
+  261,  262,    0,  264,  265,  266,  267,  268,  269,  270,
+  271,  272,  273,  260,   29,   30,  261,  262,  260,  264,
+  265,  266,  267,  268,  269,  270,  271,  272,  273,   14,
 };
-#define YYFINAL 8
+#define YYFINAL 13
 #ifndef YYDEBUG
 #define YYDEBUG 0
 #endif
-#define YYMAXTOKEN 268
+#define YYMAXTOKEN 273
 #if YYDEBUG
 char *yyname[] = {
 "end-of-file",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -107,7 +120,8 @@ char *yyname[] = {
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"INTEGER","LEXERR","END_OF_FILE",
-"COMMA","PEN_UP","PEN_DOWN","GOTO","UP","DOWN","LEFT","RIGHT","MOVE",
+"COMMA","PEN_UP","PEN_DOWN","GOTO","UP","DOWN","LEFT","RIGHT","MOVE","ABS_UP",
+"ABS_DOWN","ABS_LEFT","ABS_RIGHT","ABS_MOVE",
 };
 char *yyrule[] = {
 "$accept : simplePathWriter",
@@ -123,6 +137,11 @@ char *yyrule[] = {
 "command : DOWN length",
 "command : LEFT length",
 "command : RIGHT length",
+"command : ABS_MOVE length COMMA length",
+"command : ABS_UP length",
+"command : ABS_DOWN length",
+"command : ABS_LEFT length",
+"command : ABS_RIGHT length",
 };
 #endif
 #ifdef YYSTACKSIZE
@@ -400,6 +419,45 @@ case 12:
 {
         /* RIGHT length */
         yyval.CommandPtr = new SimpleCommand(SPW_COMMAND_RIGHT, *yyvsp[0].LengthPtr);
+        delete yyvsp[0].LengthPtr;
+    }
+break;
+case 13:
+{
+        /* ABS_MOVE length length */
+        std::vector<SimpleLength> vv;
+        vv.push_back(*yyvsp[-2].LengthPtr);
+        vv.push_back(*yyvsp[0].LengthPtr);
+        yyval.CommandPtr = new SimpleCommand(SPW_COMMAND_ABS_MOVE, vv);
+        delete yyvsp[-2].LengthPtr;
+        delete yyvsp[0].LengthPtr;
+    }
+break;
+case 14:
+{
+        /* ABS_UP length */
+        yyval.CommandPtr = new SimpleCommand(SPW_COMMAND_ABS_UP, *yyvsp[0].LengthPtr);
+        delete yyvsp[0].LengthPtr;
+    }
+break;
+case 15:
+{
+        /* ABS_DOWN length */
+        yyval.CommandPtr = new SimpleCommand(SPW_COMMAND_ABS_DOWN, *yyvsp[0].LengthPtr);
+        delete yyvsp[0].LengthPtr;
+    }
+break;
+case 16:
+{
+        /* ABS_LEFT length */
+        yyval.CommandPtr = new SimpleCommand(SPW_COMMAND_ABS_LEFT, *yyvsp[0].LengthPtr);
+        delete yyvsp[0].LengthPtr;
+    }
+break;
+case 17:
+{
+        /* ABS_RIGHT length */
+        yyval.CommandPtr = new SimpleCommand(SPW_COMMAND_ABS_RIGHT, *yyvsp[0].LengthPtr);
         delete yyvsp[0].LengthPtr;
     }
 break;

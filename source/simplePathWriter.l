@@ -50,7 +50,7 @@ number -?{digits}\.{digits}
                     return PEN_DOWN;
                 }
 
-"m"          {
+"m"             {
                     #ifdef LEX_MSG
                     fprintf (stderr, "MOVE\n");
                     #endif
@@ -83,6 +83,41 @@ number -?{digits}\.{digits}
                     fprintf (stderr, "RIGHT\n");
                     #endif
                     return RIGHT;
+                }
+
+"M"             {
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_MOVE\n");
+                    #endif
+                    return ABS_MOVE;
+                }
+
+"U"             {
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_UP\n");
+                    #endif
+                    return ABS_UP;
+                }
+
+"D"             {
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_DOWN\n");
+                    #endif
+                    return ABS_DOWN;
+                }
+
+"L"             {
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_LEFT\n");
+                    #endif
+                    return ABS_LEFT;
+                }
+
+"R"             {
+                    #ifdef LEX_MSG
+                    fprintf (stderr, "ABS_RIGHT\n");
+                    #endif
+                    return ABS_RIGHT;
                 }
 
 #.*            {

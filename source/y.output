@@ -15,6 +15,11 @@
   10          | DOWN length
   11          | LEFT length
   12          | RIGHT length
+  13          | ABS_MOVE length COMMA length
+  14          | ABS_UP length
+  15          | ABS_DOWN length
+  16          | ABS_LEFT length
+  17          | ABS_RIGHT length
 
 state 0
 	$accept : . simplePathWriter $end  (0)
@@ -27,11 +32,16 @@ state 0
 	LEFT  shift 5
 	RIGHT  shift 6
 	MOVE  shift 7
+	ABS_UP  shift 8
+	ABS_DOWN  shift 9
+	ABS_LEFT  shift 10
+	ABS_RIGHT  shift 11
+	ABS_MOVE  shift 12
 	$end  reduce 2
 
-	simplePathWriter  goto 8
-	commandList  goto 9
-	command  goto 10
+	simplePathWriter  goto 13
+	commandList  goto 14
+	command  goto 15
 
 
 state 1
@@ -49,59 +59,104 @@ state 2
 state 3
 	command : UP . length  (9)
 
-	INTEGER  shift 11
+	INTEGER  shift 16
 	.  error
 
-	length  goto 12
+	length  goto 17
 
 
 state 4
 	command : DOWN . length  (10)
 
-	INTEGER  shift 11
+	INTEGER  shift 16
 	.  error
 
-	length  goto 13
+	length  goto 18
 
 
 state 5
 	command : LEFT . length  (11)
 
-	INTEGER  shift 11
+	INTEGER  shift 16
 	.  error
 
-	length  goto 14
+	length  goto 19
 
 
 state 6
 	command : RIGHT . length  (12)
 
-	INTEGER  shift 11
+	INTEGER  shift 16
 	.  error
 
-	length  goto 15
+	length  goto 20
 
 
 state 7
 	command : MOVE . length COMMA length  (8)
 
-	INTEGER  shift 11
+	INTEGER  shift 16
 	.  error
 
-	length  goto 16
+	length  goto 21
 
 
 state 8
+	command : ABS_UP . length  (14)
+
+	INTEGER  shift 16
+	.  error
+
+	length  goto 22
+
+
+state 9
+	command : ABS_DOWN . length  (15)
+
+	INTEGER  shift 16
+	.  error
+
+	length  goto 23
+
+
+state 10
+	command : ABS_LEFT . length  (16)
+
+	INTEGER  shift 16
+	.  error
+
+	length  goto 24
+
+
+state 11
+	command : ABS_RIGHT . length  (17)
+
+	INTEGER  shift 16
+	.  error
+
+	length  goto 25
+
+
+state 12
+	command : ABS_MOVE . length COMMA length  (13)
+
+	INTEGER  shift 16
+	.  error
+
+	length  goto 26
+
+
+state 13
 	$accept : simplePathWriter . $end  (0)
 
 	$end  accept
 
 
-state 9
+state 14
 	simplePathWriter : commandList . END_OF_FILE  (1)
 	commandList : commandList . command  (3)
 
-	END_OF_FILE  shift 17
+	END_OF_FILE  shift 27
 	PEN_UP  shift 1
 	PEN_DOWN  shift 2
 	UP  shift 3
@@ -109,80 +164,131 @@ state 9
 	LEFT  shift 5
 	RIGHT  shift 6
 	MOVE  shift 7
+	ABS_UP  shift 8
+	ABS_DOWN  shift 9
+	ABS_LEFT  shift 10
+	ABS_RIGHT  shift 11
+	ABS_MOVE  shift 12
 	.  error
 
-	command  goto 18
+	command  goto 28
 
 
-state 10
+state 15
 	commandList : command .  (4)
 
 	.  reduce 4
 
 
-state 11
+state 16
 	length : INTEGER .  (5)
 
 	.  reduce 5
 
 
-state 12
+state 17
 	command : UP length .  (9)
 
 	.  reduce 9
 
 
-state 13
+state 18
 	command : DOWN length .  (10)
 
 	.  reduce 10
 
 
-state 14
+state 19
 	command : LEFT length .  (11)
 
 	.  reduce 11
 
 
-state 15
+state 20
 	command : RIGHT length .  (12)
 
 	.  reduce 12
 
 
-state 16
+state 21
 	command : MOVE length . COMMA length  (8)
 
-	COMMA  shift 19
+	COMMA  shift 29
 	.  error
 
 
-state 17
+state 22
+	command : ABS_UP length .  (14)
+
+	.  reduce 14
+
+
+state 23
+	command : ABS_DOWN length .  (15)
+
+	.  reduce 15
+
+
+state 24
+	command : ABS_LEFT length .  (16)
+
+	.  reduce 16
+
+
+state 25
+	command : ABS_RIGHT length .  (17)
+
+	.  reduce 17
+
+
+state 26
+	command : ABS_MOVE length . COMMA length  (13)
+
+	COMMA  shift 30
+	.  error
+
+
+state 27
 	simplePathWriter : commandList END_OF_FILE .  (1)
 
 	.  reduce 1
 
 
-state 18
+state 28
 	commandList : commandList command .  (3)
 
 	.  reduce 3
 
 
-state 19
+state 29
 	command : MOVE length COMMA . length  (8)
 
-	INTEGER  shift 11
+	INTEGER  shift 16
 	.  error
 
-	length  goto 20
+	length  goto 31
 
 
-state 20
+state 30
+	command : ABS_MOVE length COMMA . length  (13)
+
+	INTEGER  shift 16
+	.  error
+
+	length  goto 32
+
+
+state 31
 	command : MOVE length COMMA length .  (8)
 
 	.  reduce 8
 
 
-14 terminals, 5 nonterminals
-13 grammar rules, 21 states
+state 32
+	command : ABS_MOVE length COMMA length .  (13)
+
+	.  reduce 13
+
+
+19 terminals, 5 nonterminals
+18 grammar rules, 33 states
